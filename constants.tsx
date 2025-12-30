@@ -3,37 +3,39 @@ import React from 'react';
 import { Supplier, InventoryItem, PurchaseOrder, POStatus } from './types';
 
 export const MOCK_SUPPLIERS: Supplier[] = [
-  { id: '1', name: 'Global Tech Solutions', contactName: 'Juan Pérez', email: 'juan@globaltech.com', phone: '+34 912 345 678', category: 'Electrónica', rating: 4.8 },
-  { id: '2', name: 'Industrial Supplies Co.', contactName: 'Marta Ruiz', email: 'marta@indusupplies.es', phone: '+34 934 567 890', category: 'Herramientas', rating: 4.5 },
-  { id: '3', name: 'Office Depot Pro', contactName: 'Carlos Gómez', email: 'carlos@officedepot.com', phone: '+34 910 112 233', category: 'Oficina', rating: 4.2 },
+  { id: 1, name: 'Global Tech Solutions', contact_name: 'Juan Pérez', email: 'juan@globaltech.com', phone: '+34 912 345 678', category: 'Electrónica', rating: 4.8 },
+  { id: 2, name: 'Industrial Supplies Co.', contact_name: 'Marta Ruiz', email: 'marta@indusupplies.es', phone: '+34 934 567 890', category: 'Herramientas', rating: 4.5 },
+  { id: 3, name: 'Office Depot Pro', contact_name: 'Carlos Gómez', email: 'carlos@officedepot.com', phone: '+34 910 112 233', category: 'Oficina', rating: 4.2 },
 ];
 
 export const MOCK_INVENTORY: InventoryItem[] = [
-  { id: 'i1', name: 'Monitor 27" Dell', sku: 'MON-DELL-27', currentStock: 5, minStock: 10, unit: 'unidades', unitPrice: 250 },
-  { id: 'i2', name: 'Teclado Mecánico RGB', sku: 'KB-RGB-01', currentStock: 45, minStock: 20, unit: 'unidades', unitPrice: 85 },
-  { id: 'i3', name: 'Silla Ergonómica Pro', sku: 'CHR-ERG-99', currentStock: 2, minStock: 5, unit: 'unidades', unitPrice: 320 },
-  { id: 'i4', name: 'Cable HDMI 2.1 2m', sku: 'CBL-HDMI-2', currentStock: 120, minStock: 50, unit: 'unidades', unitPrice: 15 },
-  { id: 'i5', name: 'Laptop HP EliteBook', sku: 'LTP-HP-EB', currentStock: 3, minStock: 8, unit: 'unidades', unitPrice: 1200 },
+  { id: 101, name: 'Monitor 27" Dell', sku: 'MON-DELL-27', current_stock: 5, min_stock: 10, unit: 'unidades', unit_price: 250 },
+  { id: 102, name: 'Teclado Mecánico RGB', sku: 'KB-RGB-01', current_stock: 45, min_stock: 20, unit: 'unidades', unit_price: 85 },
+  { id: 103, name: 'Silla Ergonómica Pro', sku: 'CHR-ERG-99', current_stock: 2, min_stock: 5, unit: 'unidades', unit_price: 320 },
+  { id: 104, name: 'Cable HDMI 2.1 2m', sku: 'CBL-HDMI-2', current_stock: 120, min_stock: 50, unit: 'unidades', unit_price: 15 },
+  { id: 105, name: 'Laptop HP EliteBook', sku: 'LTP-HP-EB', current_stock: 3, min_stock: 8, unit: 'unidades', unit_price: 1200 },
 ];
 
 export const MOCK_ORDERS: PurchaseOrder[] = [
   {
-    id: 'PO-2024-001',
-    supplierId: '1',
-    supplierName: 'Global Tech Solutions',
-    items: [{ itemId: 'i1', name: 'Monitor 27" Dell', quantity: 10, unitPrice: 250 }],
-    totalAmount: 2500,
+    id: 1,
+    uuid: 'po-550e8400-e29b-41d4-a716-446655440000',
+    supplier_id: 1,
+    supplier_name: 'Global Tech Solutions',
+    items: [{ inventory_item_id: 101, name: 'Monitor 27" Dell', quantity: 10, unit_price: 250 }],
+    total_amount: 2500,
     status: POStatus.RECEIVED,
-    createdAt: '2024-05-10',
+    created_at: '2024-05-10 14:30:00',
   },
   {
-    id: 'PO-2024-002',
-    supplierId: '2',
-    supplierName: 'Industrial Supplies Co.',
-    items: [{ itemId: 'i2', name: 'Teclado Mecánico RGB', quantity: 20, unitPrice: 85 }],
-    totalAmount: 1700,
+    id: 2,
+    uuid: 'po-660f9511-f30c-52e5-b827-557766551111',
+    supplier_id: 2,
+    supplier_name: 'Industrial Supplies Co.',
+    items: [{ inventory_item_id: 102, name: 'Teclado Mecánico RGB', quantity: 20, unit_price: 85 }],
+    total_amount: 1700,
     status: POStatus.PENDING,
-    createdAt: '2024-05-15',
+    created_at: '2024-05-15 09:15:00',
   }
 ];
 

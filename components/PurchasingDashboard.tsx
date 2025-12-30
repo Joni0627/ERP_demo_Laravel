@@ -12,7 +12,8 @@ const PurchasingDashboard: React.FC = () => {
   const stats = [
     { label: 'Gasto Total Mensual', value: '€12,450', trend: '+12%', color: 'text-blue-600', bg: 'bg-blue-50' },
     { label: 'Órdenes Pendientes', value: '8', trend: '-2', color: 'text-amber-600', bg: 'bg-amber-50' },
-    { label: 'Stock Bajo Mínimo', value: MOCK_INVENTORY.filter(i => i.currentStock < i.minStock).length, trend: 'Crítico', color: 'text-red-600', bg: 'bg-red-50' },
+    // Fix: Use correct property names current_stock and min_stock
+    { label: 'Stock Bajo Mínimo', value: MOCK_INVENTORY.filter(i => i.current_stock < i.min_stock).length, trend: 'Crítico', color: 'text-red-600', bg: 'bg-red-50' },
     { label: 'Proveedores Activos', value: '24', trend: 'Ok', color: 'text-emerald-600', bg: 'bg-emerald-50' },
   ];
 
@@ -148,11 +149,14 @@ const PurchasingDashboard: React.FC = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {MOCK_INVENTORY.filter(i => i.currentStock < i.minStock).map(item => (
+            {/* Fix: Use correct property names current_stock and min_stock */}
+            {MOCK_INVENTORY.filter(i => i.current_stock < i.min_stock).map(item => (
               <tr key={item.id} className="hover:bg-gray-50/50 transition-colors">
                 <td className="px-6 py-4 font-medium text-gray-900">{item.name}</td>
-                <td className="px-6 py-4">{item.currentStock} {item.unit}</td>
-                <td className="px-6 py-4 text-gray-500">{item.minStock} {item.unit}</td>
+                {/* Fix: Use correct property name current_stock */}
+                <td className="px-6 py-4">{item.current_stock} {item.unit}</td>
+                {/* Fix: Use correct property name min_stock */}
+                <td className="px-6 py-4 text-gray-500">{item.min_stock} {item.unit}</td>
                 <td className="px-6 py-4">
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
                     Bajo Stock

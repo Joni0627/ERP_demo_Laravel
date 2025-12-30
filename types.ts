@@ -8,40 +8,44 @@ export enum POStatus {
 }
 
 export interface Supplier {
-  id: string;
+  id: number;
   name: string;
-  contactName: string;
+  contact_name: string;
   email: string;
   phone: string;
   category: string;
   rating: number;
+  created_at?: string;
 }
 
 export interface InventoryItem {
-  id: string;
+  id: number;
   name: string;
   sku: string;
-  currentStock: number;
-  minStock: number;
+  current_stock: number;
+  min_stock: number;
   unit: string;
-  unitPrice: number;
+  unit_price: number;
 }
 
 export interface PurchaseOrderItem {
-  itemId: string;
+  id?: number;
+  purchase_order_id?: number;
+  inventory_item_id: number;
   name: string;
   quantity: number;
-  unitPrice: number;
+  unit_price: number;
 }
 
 export interface PurchaseOrder {
-  id: string;
-  supplierId: string;
-  supplierName: string;
+  id: number;
+  uuid: string;
+  supplier_id: number;
+  supplier_name?: string;
   items: PurchaseOrderItem[];
-  totalAmount: number;
+  total_amount: number;
   status: POStatus;
-  createdAt: string;
+  created_at: string;
 }
 
-export type ViewType = 'dashboard' | 'suppliers' | 'orders' | 'inventory';
+export type ViewType = 'dashboard' | 'suppliers' | 'orders' | 'inventory' | 'laravel_config';

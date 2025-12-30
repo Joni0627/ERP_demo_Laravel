@@ -41,13 +41,16 @@ const PurchaseOrdersList: React.FC = () => {
                     {order.status}
                   </span>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 mt-2">{order.supplierName}</h4>
-                <p className="text-sm text-gray-500 mt-1">Creado el {order.createdAt} • {order.items.length} productos</p>
+                {/* Fix: Use correct property name supplier_name */}
+                <h4 className="text-lg font-bold text-gray-900 mt-2">{order.supplier_name}</h4>
+                {/* Fix: Use correct property name created_at */}
+                <p className="text-sm text-gray-500 mt-1">Creado el {order.created_at} • {order.items.length} productos</p>
               </div>
               
               <div className="text-right">
                 <p className="text-xs text-gray-400 uppercase font-bold tracking-wider">Monto Total</p>
-                <p className="text-2xl font-black text-gray-900">€{order.totalAmount.toLocaleString()}</p>
+                {/* Fix: Use correct property name total_amount */}
+                <p className="text-2xl font-black text-gray-900">€{order.total_amount.toLocaleString()}</p>
                 <div className="mt-3 flex gap-2 justify-end">
                   <button className="text-sm text-gray-600 font-semibold px-4 py-1.5 border border-gray-200 rounded-lg hover:bg-gray-50">Ver PDF</button>
                   <button className="text-sm text-indigo-600 font-bold px-4 py-1.5 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">Gestionar</button>

@@ -5,7 +5,8 @@ import { InventoryItem, Supplier } from "../types";
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export async function getSmartReorderSuggestions(inventory: InventoryItem[], suppliers: Supplier[]) {
-  const lowStockItems = inventory.filter(item => item.currentStock <= item.minStock);
+  // Fix: Use correct property names current_stock and min_stock
+  const lowStockItems = inventory.filter(item => item.current_stock <= item.min_stock);
   
   if (lowStockItems.length === 0) return null;
 

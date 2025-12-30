@@ -1,5 +1,5 @@
 {
-  "name": "NexusERP - Purchasing & Procurement Module",
-  "description": "A high-fidelity ERP dashboard demo focusing on purchasing, supplier management, and AI-driven stock replenishment suggestions.",
+  "name": "NexusERP L11 - Purchasing Module",
+  "description": "Enterprise-grade ERP Purchasing Module built natively with Laravel 11, Blade, and AI optimizations.",
   "requestFramePermissions": []
 }

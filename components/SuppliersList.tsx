@@ -44,7 +44,8 @@ const SuppliersList: React.FC = () => {
                   </span>
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-600">
-                  <p>{supplier.contactName}</p>
+                  {/* Fix: Use correct property name contact_name */}
+                  <p>{supplier.contact_name}</p>
                   <p className="text-xs text-gray-400">{supplier.phone}</p>
                 </td>
                 <td className="px-6 py-4">
