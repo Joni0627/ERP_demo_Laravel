@@ -1,14 +1,14 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { InventoryItem, Supplier } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export async function getSmartReorderSuggestions(inventory: InventoryItem[], suppliers: Supplier[]) {
-  // Fix: Use correct property names current_stock and min_stock
+  // Fix: Use correct property names current_stock and min_stock for filtering
   const lowStockItems = inventory.filter(item => item.current_stock <= item.min_stock);
   
   if (lowStockItems.length === 0) return null;
+
+  // Fix: Instantiate GoogleGenAI right before the API call as per best practices
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   const prompt = `
     Basado en el siguiente inventario de bajo stock en mi ERP, genera sugerencias de órdenes de compra inteligentes.
@@ -34,7 +34,8 @@ export async function getSmartReorderSuggestions(inventory: InventoryItem[], sup
                 type: Type.OBJECT,
                 properties: {
                   supplierName: { type: Type.STRING },
-                  supplierId: { type: Type.STRING },
+                  // Changed to INTEGER to match the number type used in the ERP application
+                  supplierId: { type: Type.INTEGER },
                   reason: { type: Type.STRING },
                   items: {
                     type: Type.ARRAY,
@@ -42,7 +43,8 @@ export async function getSmartReorderSuggestions(inventory: InventoryItem[], sup
                       type: Type.OBJECT,
                       properties: {
                         itemName: { type: Type.STRING },
-                        itemId: { type: Type.STRING },
+                        // Changed to INTEGER to match the number type used in the ERP application
+                        itemId: { type: Type.INTEGER },
                         quantity: { type: Type.NUMBER }
                       },
                       required: ["itemName", "itemId", "quantity"]
@@ -58,7 +60,12 @@ export async function getSmartReorderSuggestions(inventory: InventoryItem[], sup
       }
     });
 
-    return JSON.parse(response.text.trim());
+    // Fix: Access response.text as a property and handle potential undefined values before parsing
+    const text = response.text;
+    if (!text) {
+      return null;
+    }
+    return JSON.parse(text.trim());
   } catch (error) {
     console.error("Gemini Error:", error);
     return null;
